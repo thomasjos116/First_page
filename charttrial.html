@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chartBox{
+            width: 700px;
+        }
+        .buttonBox{
+            width: 700px;
+            
+           
+        }
+        button{
+            padding: 5px 10px;
+            margin: 5px;
+            background:grey;
+            color: white;
+            border-radius: 20px;
+        } 
+    </style>
+</head>
+<body>
+    <div class="chartBox">
+        <canvas id="myChart"  ></canvas>
+      </div>
+      <div class="buttonBox">
+          <button onclick="toggleData(0)">Red</button>
+          <button onclick="toggleData(1)">Blue</button>
+          <button onclick="toggleData(2)">Yellow</button>
+      </div>
+     
+      <script>
+          var xValues = [100,200,300,400,500,600,700,800,900,1000];
+          const ctx = document.getElementById('myChart')//.getContext('2d');
+           const myChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{ 
+                    label:"",
+                    data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+                    borderColor: "red",
+                    fill: false
+                    },
+                    { 
+                    data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+                    borderColor: "Blue",
+                    fill: false
+                    },
+                    { 
+                    data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+                    borderColor: "yellow",
+                    fill: false
+                    },]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: { color : "red",
+                            
+                        }
+                    }]
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                tension: 0.5, 
+            }    
+        });
+console.log(myChart)
+
+function toggleData(value){
+ const showValue = myChart.isDatasetVisible(value);
+  if(showValue==true){
+    myChart.hide(value)
+  }
+  if(showValue==false){
+    myChart.show(value);
+  }
+            
+}
+</script>
+
+    
+</body>
