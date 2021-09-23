@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<button onclick="red()">red</button>
+<button onclick="blue()">blue</button>
+
+<script>
+var ctx = document.getElementById('myChart');
+
+
+var togglered=true;
+  var reddata=  {data: [3000,6000,2000,400,600,400,3000,1300,1200,320],
+        borderColor: "red",
+        fill: false}
+  const labels =  [100,200,300,400,500,600,700,800,900,1000];
+  const data = {
+     labels: labels,
+    datasets: [{ 
+          data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+          borderColor: "blue",
+          fill: false
+        }],
+        options: {
+          legend: {display: false}
+        }
+  };
+  const config = {
+    type: 'line',
+    data: data,
+  };
+var linech = new Chart(ctx, config);
+console.log(linech.config.data.datasets)
+
+
+function red(){
+    if(togglered){
+      linech.config.data.datasets.push(reddata);
+      togglered=false; 
+    }
+    else{
+     linech.config.data.datasets.splice(1,1)
+      togglered=true; 
+    }
+    
+    linech.update(); 
+};
+
+</script>
